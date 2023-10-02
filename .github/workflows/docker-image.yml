@@ -14,8 +14,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: test distributoin
+      run: python -m unittest
+    - name: build distribution
+      run: python -m build
     - name: Build the Docker image
       run: make build
-    - name: Run the unit test
+    - name: Run the unit test in container
       run: docker run   --interactive --tty --ip 0.0.0.0 --rm --env DISPLAY=host.docker.internal:0 -v $(pwd):/opt/skydb images.canfar.net/uvickbos/skydb:0.1 pytest
       
