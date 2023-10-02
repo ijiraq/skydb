@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+
+[project]
+name = "skydb"
+authors = [{ name = "JJ Kavelaars", email = "JJ.Kavelaars@nrc-cnrc.gc.ca" }]
+description = "SkyDB: A database for astronomical image data STC"
+readme = "README.md"
+keywords = ["astronomy", "database", "STC"]
+license = "GPLv3"
+dependencies = [
+    "astropy",
+    "numpy",
+    "sip_tpv",
+]
+classifiers = ["Programming Language :: Python :: 3"]
+dynamic = ["version"]
