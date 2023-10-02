@@ -15,9 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag skydb:$(date +%s)
-    - name: Install the package
-      run: pip install --editable .
+      run: make build
     - name: Run the unit test
-      run: pytyhon -m unittest
+      run: docker run   --interactive --tty --ip 0.0.0.0 --rm --env DISPLAY=host.docker.internal:0 -v $(pwd):/opt/skydb images.canfar.net/uvickbos/skydb:0.1 pytest
       
