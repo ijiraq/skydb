@@ -7,7 +7,7 @@ authors = [{ name = "JJ Kavelaars", email = "JJ.Kavelaars@nrc-cnrc.gc.ca" }]
 description = "SkyDB: A database for astronomical image data STC"
 readme = "README.md"
 keywords = ["astronomy", "database", "STC"]
-license = "GPLv3"
+license = { text= "GPLv3 or later" }
 dependencies = [
     "astropy",
     "numpy",
