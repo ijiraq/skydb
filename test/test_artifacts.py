@@ -8,9 +8,7 @@ from astropy.io import fits
 
 __PATH__ = os.path.dirname(__file__)
 TEST_FITS_FILE = 'data/cutout_1200_2400_1350_2300-1616681p.fits'
-
-
-# TEST_FITS_FILE = os.path.join(__PATH__, TEST_FITS_FILE)
+TEST_FITS_FILE = os.path.join(__PATH__, TEST_FITS_FILE)
 
 class TestImage(TestCase):
     def setUp(self) -> None:
