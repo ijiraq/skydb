@@ -12,17 +12,16 @@ TEST_FITS_FILE = os.path.join(__PATH__, TEST_FITS_FILE)
 
 class TestImage(TestCase):
     def setUp(self) -> None:
-        self.hdu = fits.open(TEST_FITS_FILE)
+        self.date_obs = fits.getheader(TEST_FITS_FILE)['DATE-OBS']
         self.image = Image(TEST_FITS_FILE)
 
     def test__load_keymap(self):
-        self.assertEqual(self.image.header[self.image.fits_keyword_map['DATE-OBS']],
-                         self.hdu[0].header["DATE-OBS"])
+        self.assertEqual(self.image.header[self.image.fits_keyword_map['DATE-OBS']], self.date_obs)
 
     def test_bounds(self):
-        self.assertAlmostEquals(self.image.bounds,
-                                (
-                                    (213.96726877115992, 213.97527788793573),
-                                    (-12.656266526108762, -12.65102587539254),
-                                    (Time("2013-04-09 08:43:05.619"), Time("2013-04-09 08:47:52.721"))),
-                                5)
+        self.assertAlmostEqual(self.image.bounds[0][0], 213.96726877115992, places=5)
+        self.assertAlmostEqual(self.image.bounds[0][1], 213.97527788793573, places=5)
+        self.assertAlmostEqual(self.image.bounds[1][0], -12.656266526108762, places=5)
+        self.assertAlmostEqual(self.image.bounds[1][1], -12.65102587539254, places=5)
+        self.assertEqual(self.image.bounds[2][0], Time("2013-04-09 08:43:05.619"))
+        self.assertEqual(self.image.bounds[2][1], Time("2013-04-09 08:47:52.721"))
