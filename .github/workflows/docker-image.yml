@@ -14,8 +14,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: build the distributoin
-      run: python -m build
+    - name: build the distribution
+      run: |
+        pip install --upgrade pip
+        pip install --upgrade build
+        python -m build
     - name: Build the Docker image
       run: make build
     - name: Run the unit test in the container
