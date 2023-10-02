@@ -7,3 +7,9 @@ COPY canfar/nsswitch.conf /etc/
 RUN touch /etc/sudo.conf && echo "Set disable_coredump false" > /etc/sudo.conf
 COPY canfar/startup.sh /skaha/startup.sh
 COPY etc/skydb.sh /etc/profile.d/skydb.sh
+# Now this specific project
+RUN yum install -y pip
+WORKDIR /opt
+COPY dist/*.tar.gz ./
+RUN pip install pytest
+RUN pip install *.tar.gz
